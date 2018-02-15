@@ -1,0 +1,16 @@
+version: "3"
+services:
+  json-server:
+    image: arlekinsoftware/json-server:latest
+    restart: always
+    volumes:
+      - ./runtime:/json-server/runtime:rw
+    environment:
+      - VIRTUAL_HOST="json-server"
+      - JSON_SCHEMA_PATH=/json-server/runtime/schema.json
+      - JWT_SECRET_KEY=123
+      - JWT_EXPIRES_IN=1h
+      - PROTECTED_ROUTES=/json-server/runtime/protected.json
+    ports:
+      - "3000:3000"
+    expose: 3000
