@@ -1,25 +1,25 @@
-import jwt from 'jsonwebtoken'
+let jwt = require('jsonwebtoken');
 
-export default {
+module.exports = {
     users: null,
 
-    createToken: function (payload){
-        let expires = process.env.JWT_EXPIRES_IN;
+    createToken: (payload) => {
+        let expiresIn = process.env.JWT_EXPIRES_IN;
 
-        return jwt.sign(payload, process.env.JWT_SECRET_KEY, { expires })
+        return jwt.sign(payload, process.env.JWT_SECRET_KEY, { expiresIn });
     },
 
-    verifyToken: function (token){
+    verifyToken: (token) => {
         return  jwt.verify(
             token,
             process.env.JWT_SECRET_KEY,
             (err, decode) => decode !== undefined ?  decode : err
-        )
+        );
     },
 
     isAuthenticated: function ({email, password}){
         return this.users.findIndex( user =>
             user.email === email && user.password === password
-        ) !== -1
-    }
-}
+        ) !== -1;
+    },
+};
