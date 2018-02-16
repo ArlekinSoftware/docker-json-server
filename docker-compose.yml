@@ -1,7 +1,7 @@
 version: "3"
 services:
   json-server:
-    image: arlekinsoftware/json-server:latest
+    image: json-server:latest
     restart: always
     volumes:
       - ./runtime:/json-server/runtime:rw
@@ -11,6 +11,8 @@ services:
       - JWT_SECRET_KEY=123
       - JWT_EXPIRES_IN=1h
       - PROTECTED_ROUTES=/json-server/runtime/protected.json
+    command: npm run auth
     ports:
       - "3000:3000"
-    expose: 3000
+    expose:
+      - 3000
