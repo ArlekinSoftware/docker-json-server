@@ -1,7 +1,7 @@
 version: "3"
 services:
   json-server:
-    image: json-server:latest
+    image: arlekinsoft/json-server:latest
     restart: always
     volumes:
       - ./runtime:/json-server/runtime:rw
