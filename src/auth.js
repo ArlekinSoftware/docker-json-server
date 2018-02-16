@@ -17,7 +17,7 @@ module.exports = {
         );
     },
 
-    isAuthenticated: function ({email, password}){
+    isAuthenticated: function ({email, password}) {
         return this.users.findIndex( user =>
             user.email === email && user.password === password
         ) !== -1;
