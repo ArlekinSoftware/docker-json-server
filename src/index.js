@@ -37,10 +37,9 @@ server.use((request, response, next) => {
         if (isPathProtected !== undefined) {
             let unauthStatus = 401;
 
-            if (
-                request.headers.authorization === undefined ||
-                request.headers.authorization.split(' ')[0] !== 'Bearer'
-            ) {
+            if (request.headers.authorization === undefined
+                || request.headers.authorization.split(' ')[0] !== 'Bearer')
+            {
                 response.status(unauthStatus).json({
                     "status": unauthStatus,
                     "message": "Bad authorization header",
